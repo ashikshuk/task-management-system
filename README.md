@@ -1,71 +1,119 @@
-# Task Management System (Jira/Trello-style)
+# Task Management System
 
-A full-stack task management web application with a modern Kanban board UI, similar to a simplified Jira/Trello. Users can sign up, log in, and manage their tasks with statuses, priorities, due dates, drag-and-drop, and statistics.
+## Project Overview
 
----
+The **Task Management System** is a full-stack web application designed to help users efficiently create, organize, and track tasks. The system provides a simple and intuitive interface where users can manage their daily work using task priorities, status tracking, and a dashboard view.
 
-## Tech Stack
-
-- **Frontend**: React.js (modern hooks-based, Vite or CRA)
-- **Backend**: Node.js + Express.js (RESTful API)
-- **Database**: PostgreSQL
-- **Authentication**: JWT (JSON Web Tokens)
+This project demonstrates full-stack development concepts such as REST API development, frontend–backend integration, database management, and user interface design. The goal of the project is to simulate a simplified version of professional productivity tools used in modern software teams.
 
 ---
 
 ## Features
 
-- **User Authentication**
-  - User signup and login
-  - JWT-based authentication
-  - Secure password hashing with `bcrypt`
-
-- **Task Management**
-  - Create, update, and delete tasks
-  - Set priority (`Low`, `Medium`, `High`)
-  - Set due dates
-
-- **Task Status Tracking**
-  - Kanban-style statuses: `To Do`, `In Progress`, `Completed`
-  - Drag-and-drop tasks between status columns
-
-- **Dashboard & Filters**
-  - Kanban board view for the logged-in user's tasks
-  - Search tasks by title
-  - Filter by status, priority, and due date
-  - Task statistics: total, completed, and pending tasks
-
-- **Other**
-  - Responsive design (mobile and desktop)
-  - Centralized error handling and validation
-  - Clean, layered architecture (routes, controllers, services)
+* Create, update, and delete tasks
+* Assign task priority (Low, Medium, High)
+* Track task status (To Do, In Progress, Completed)
+* Dashboard displaying task statistics
+* Kanban-style task board for visual task management
+* Task filtering and organization
+* Responsive user interface for better usability
 
 ---
 
-## Project Structure
+## Tech Stack
 
-```text
-task-management-system/
-  backend/
-    package.json
-    .env.example
-    src/
-      server.js
-      config/
-        db.js
-      middleware/
-        errorMiddleware.js
-      routes/
-        authRoutes.js
-        taskRoutes.js
-      controllers/
-        authController.js
-        taskController.js
-      services/
-        authService.js
-        taskService.js
-      utils/
-        generateToken.js
-        authMiddleware.js
-  frontend/
-    (React app: Vite/CRA with components, pages, and hooks)
+**Frontend**
+
+* HTML
+* CSS
+* JavaScript
+* React.js
+
+**Backend**
+
+* Node.js
+* Express.js
+
+**Database**
+
+* MongoDB / PostgreSQL
+
+**Tools**
+
+* Git
+* GitHub
+* REST APIs
+
+---
+
+## Screenshots
+
+### Dashboard
+
+![Dashboard](screenshots/dashboard.png)
+
+### Kanban Board
+
+![Kanban Board](screenshots/kanban-board.png)
+
+### Task Form
+
+![Task Form](screenshots/task-form.png)
+
+---
+
+## Setup Instructions
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/ashikshuk/task-management-system.git
+```
+
+### 2. Navigate to the project folder
+
+```bash
+cd task-management-system
+```
+
+### 3. Install dependencies
+
+```bash
+npm install
+```
+
+### 4. Start the server
+
+```bash
+npm start
+```
+
+### 5. Open the application
+
+Visit the following URL in your browser:
+
+```
+http://localhost:3000
+```
+
+---
+
+## Future Improvements
+
+* User authentication (Login / Signup)
+* Real-time task updates
+* Team collaboration features
+* Task reminders and notifications
+* Deployment with cloud services
+
+---
+
+## Author
+
+**Ashik Kumar Shukla**
+
+GitHub: https://github.com/ashikshuk
+
+
+
+
