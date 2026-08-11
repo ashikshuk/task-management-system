@@ -1,0 +1,70 @@
+const { body, query } = require('express-validator');
+
+// Single source of truth for allowed values - import this same array
+// on the frontend if possible, to avoid the casing/naming drifting apart.
+const TASK_STATUSES = ['todo', 'in_progress', 'completed'];
+const TASK_PRIORITIES = ['low', 'medium', 'high'];
+
+const createTaskValidators = [
+  body('title')
+    .trim()
+    .notEmpty().withMessage('Title is required')
+    .isLength({ max: 200 }).withMessage('Title must be under 200 characters'),
+  body('description')
+    .optional()
+    .trim()
+    .isLength({ max: 2000 }).withMessage('Description must be under 2000 characters'),
+  body('status')
+    .optional()
+    .isIn(TASK_STATUSES).withMessage(`Status must be one of: ${TASK_STATUSES.join(', ')}`),
+  body('priority')
+    .optional()
+    .isIn(TASK_PRIORITIES).withMessage(`Priority must be one of: ${TASK_PRIORITIES.join(', ')}`),
+  body('dueDate')
+    .optional({ nullable: true })
+    .isISO8601().withMessage('dueDate must be a valid ISO 8601 date'),
+  body('progress')
+    .optional()
+    .isInt({ min: 0, max: 100 }).withMessage('Progress must be an integer between 0 and 100')
+];
+
+// Same rules as create, but every field is optional since updates are partial (PATCH-style)
+const updateTaskValidators = [
+  body('title')
+    .optional()
+    .trim()
+    .notEmpty().withMessage('Title cannot be empty')
+    .isLength({ max: 200 }).withMessage('Title must be under 200 characters'),
+  body('description')
+    .optional()
+    .trim()
+    .isLength({ max: 2000 }).withMessage('Description must be under 2000 characters'),
+  body('status')
+    .optional()
+    .isIn(TASK_STATUSES).withMessage(`Status must be one of: ${TASK_STATUSES.join(', ')}`),
+  body('priority')
+    .optional()
+    .isIn(TASK_PRIORITIES).withMessage(`Priority must be one of: ${TASK_PRIORITIES.join(', ')}`),
+  body('dueDate')
+    .optional({ nullable: true })
+    .isISO8601().withMessage('dueDate must be a valid ISO 8601 date'),
+  body('progress')
+    .optional()
+    .isInt({ min: 0, max: 100 }).withMessage('Progress must be an integer between 0 and 100')
+];
+
+const listTaskValidators = [
+  query('status').optional().isIn(TASK_STATUSES),
+  query('priority').optional().isIn(TASK_PRIORITIES),
+  query('dueFrom').optional().isISO8601(),
+  query('dueTo').optional().isISO8601(),
+  query('search').optional().trim().isLength({ max: 200 })
+];
+
+module.exports = {
+  TASK_STATUSES,
+  TASK_PRIORITIES,
+  createTaskValidators,
+  updateTaskValidators,
+  listTaskValidators
+};
